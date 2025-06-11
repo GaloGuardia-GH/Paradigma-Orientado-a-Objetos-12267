@@ -33,12 +33,14 @@ public class MainFrame extends JFrame {
         JButton btnPrestar = new JButton("Prestar Libro");
         JButton btnDevolver = new JButton("Devolver Libro");
         JButton btnAdmin = new JButton("Administrar Libros");
+        JButton btnAdminUsuarios = new JButton("Administrar Usuarios");
         JButton btnSalir = new JButton("Salir");
 
         btnBuscar.addActionListener(e -> new BuscarLibroVentana(libros));
         btnPrestar.addActionListener(e -> new PrestarLibroVentana(libros, usuarios, prestamos));
         btnDevolver.addActionListener(e -> new DevolverLibroVentana(prestamos));
         btnAdmin.addActionListener(e -> new AdministrarLibrosVentana(libros));
+        btnAdminUsuarios.addActionListener(e -> new AdministrarUsuariosVentana(usuarios));
         btnSalir.addActionListener(e -> {
             int opcion = JOptionPane.showConfirmDialog(
                 this,
@@ -53,11 +55,12 @@ public class MainFrame extends JFrame {
             }
         });
 
-        JPanel panel = new JPanel(new GridLayout(5, 1, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(6, 1, 10, 10));
         panel.add(btnBuscar);
         panel.add(btnPrestar);
         panel.add(btnDevolver);
         panel.add(btnAdmin);
+        panel.add(btnAdminUsuarios);
         panel.add(btnSalir);
         add(panel);
 

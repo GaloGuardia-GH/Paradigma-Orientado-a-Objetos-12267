@@ -1,6 +1,7 @@
 package vistas;
 
 import modelos.Libro;
+import modelos.Usuario;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
@@ -73,8 +74,16 @@ public class AdministrarLibrosVentana extends JFrame {
 
         int opcion = JOptionPane.showConfirmDialog(this, campos, "Nuevo Libro", JOptionPane.OK_CANCEL_OPTION);
         if (opcion == JOptionPane.OK_OPTION) {
-            libros.add(new Libro(txtTitulo.getText(), txtAutor.getText(), txtCategoria.getText()));
-            cargarTabla();
+            String titulo = txtTitulo.getText().trim();
+            String autor = txtAutor.getText().trim();
+            String categoria = txtCategoria.getText().trim();
+
+            if (!titulo.isEmpty() && !autor.isEmpty() && !categoria.isEmpty()) {
+                libros.add(new Libro(titulo, autor, categoria));
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe completar todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 
@@ -89,19 +98,36 @@ public class AdministrarLibrosVentana extends JFrame {
 
             int opcion = JOptionPane.showConfirmDialog(this, campos, "Editar Libro", JOptionPane.OK_CANCEL_OPTION);
             if (opcion == JOptionPane.OK_OPTION) {
-                libro.setTitulo(txtTitulo.getText());
-                libro.setAutor(txtAutor.getText());
-                libro.setCategoria(txtCategoria.getText());
-                cargarTabla();
+                String titulo = txtTitulo.getText().trim();
+                String autor = txtAutor.getText().trim();
+                String categoria = txtCategoria.getText().trim();
+
+                if (!titulo.isEmpty() && !autor.isEmpty() && !categoria.isEmpty()) {
+                    libro.setTitulo(titulo);
+                    libro.setAutor(autor);
+                    libro.setCategoria(categoria);
+                    cargarTabla();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Debe completar todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
     }
 
     private void eliminarLibro() {
-        int fila = tabla.getSelectedRow();
-        if (fila >= 0) {
-            libros.remove(fila);
-            cargarTabla();
+        int opcion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estás seguro de que deseas eliminar el libro?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                libros.remove(fila);
+                cargarTabla();
+            }
         }
     }
 }
