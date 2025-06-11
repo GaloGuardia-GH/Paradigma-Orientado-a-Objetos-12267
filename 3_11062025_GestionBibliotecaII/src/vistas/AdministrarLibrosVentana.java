@@ -1,7 +1,6 @@
 package vistas;
 
 import modelos.Libro;
-import modelos.Usuario;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
