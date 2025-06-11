@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 
         cargarDatos();
 
-        JButton btnBuscar = new JButton("Buscar Libro");
+        JButton btnBuscar = new JButton("Buscar Libros");
         JButton btnPrestar = new JButton("Prestar Libro");
         JButton btnDevolver = new JButton("Devolver Libro");
         JButton btnAdmin = new JButton("Administrar Libros");

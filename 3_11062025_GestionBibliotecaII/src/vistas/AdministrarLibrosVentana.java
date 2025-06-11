@@ -114,16 +114,16 @@ public class AdministrarLibrosVentana extends JFrame {
     }
 
     private void eliminarLibro() {
-        int opcion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Estás seguro de que deseas eliminar el libro?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION
-        );
+        int fila = tabla.getSelectedRow();
+        if (fila >= 0) {
+            int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas eliminar el libro?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+            );
 
-        if (opcion == JOptionPane.YES_OPTION) {
-            int fila = tabla.getSelectedRow();
-            if (fila >= 0) {
+            if (opcion == JOptionPane.YES_OPTION) {
                 libros.remove(fila);
                 cargarTabla();
             }

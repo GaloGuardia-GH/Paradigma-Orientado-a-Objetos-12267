@@ -17,6 +17,13 @@ public class AdministrarUsuariosVentana extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        try {
+            Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recursos/icono.png"));
+            setIconImage(icono);
+        } catch (Exception ex) {
+            System.out.println("No se pudo cargar el ícono.");
+        }
+
         modelo = new DefaultTableModel(new Object[]{"ID", "Nombre"}, 0);
         tabla = new JTable(modelo);
         cargarUsuarios(usuarios);
@@ -108,16 +115,16 @@ public class AdministrarUsuariosVentana extends JFrame {
     }
 
     private void eliminarUsuario(List<Usuario> usuarios) {
-        int opcion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Estás seguro de que deseas eliminar el usuario?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION
-        );
+        int fila = tabla.getSelectedRow();
+        if (fila >= 0) {
+            int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas eliminar el usuario?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+            );
 
-        if (opcion == JOptionPane.YES_OPTION) {
-            int fila = tabla.getSelectedRow();
-            if (fila >= 0) {
+            if (opcion == JOptionPane.YES_OPTION) {
                 usuarios.remove(fila);
                 modelo.removeRow(fila);
             }
