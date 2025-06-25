@@ -6,10 +6,7 @@ import java.io.*;
 import java.util.List;
 
 public class BibliotecaData {
-    // Private constructor to prevent instantiation
-    private BibliotecaData() {
-        // This class should not be instantiated
-    }
+    private BibliotecaData() {}
 
     public static void guardarDatos(List<Libro> libros, String archivo) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(archivo))) {
