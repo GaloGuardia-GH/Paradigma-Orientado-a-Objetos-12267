@@ -31,6 +31,17 @@ public class CalendarioEventos extends JFrame {
         panel.add(crearCalendario(LocalDate.now()), BorderLayout.CENTER);
         add(panel);
 
+        // Botón Volver
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(e -> dispose());
+        btnVolver.setPreferredSize(new Dimension(250, 30));
+
+        JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelInferior.setBorder(new EmptyBorder(5, 20, 15, 20));
+        panelInferior.add(btnVolver);
+
+        add(panelInferior, BorderLayout.SOUTH);
+
         setVisible(true);
     }
 
