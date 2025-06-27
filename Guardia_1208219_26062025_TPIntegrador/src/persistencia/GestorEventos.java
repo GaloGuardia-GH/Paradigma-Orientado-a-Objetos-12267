@@ -9,7 +9,9 @@ import java.util.List;
 public class GestorEventos {
     private List<Evento> eventos = new ArrayList<>();
 
-    public List<Evento> getEventos() { return eventos; }
+    public List<Evento> getEventos() {
+        return eventos;
+    }
 
     public void agregarEvento(Evento e) {
         eventos.add(e);
